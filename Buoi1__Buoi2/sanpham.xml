@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE store [
+  <!ELEMENT store (product+)>
+  <!ELEMENT product EMPTY>
+  <!ATTLIST product
+    id       CDATA #REQUIRED
+    category CDATA #REQUIRED
+    price    CDATA #REQUIRED
+    currency CDATA #REQUIRED
+  >
+]>
+<store>
+  <product id="P001" category="Điện tử" price="15990000" currency="VND"/>
+  <product id="P002" category="Thời trang" price="499" currency="USD"/>
+  <product id="P003" category="Gia dụng" price="1250000" currency="VND"/>
+</store>

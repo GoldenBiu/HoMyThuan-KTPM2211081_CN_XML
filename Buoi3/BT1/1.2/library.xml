@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE library SYSTEM "library_list.dtd">
+<library>
+    <book id="B001">
+        <title> Lập trình Java </title>
+        <author> Nguyễn văn Hang </author>
+        <year> 2023 </year>
+        <genre> Công nghệ sinh học</genre>
+    </book>
+    <book id="B002">
+        <title> Kinh tế </title>
+        <author> Trần Thị Phương</author>
+        <year> 2010 </year>
+        <genre> Kinh tế </genre>
+    </book>
+</library>

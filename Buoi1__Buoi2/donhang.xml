@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE orders [
+  <!ELEMENT orders (order:order+)>
+  <!ATTLIST orders
+    xmlns:order CDATA #FIXED "http://company.com/order"
+    xmlns:prod  CDATA #FIXED "http://company.com/product"
+  >
+  <!ELEMENT order:order (prod:item+)>
+  <!ATTLIST order:order
+    id        CDATA #REQUIRED
+    customer  CDATA #REQUIRED
+    date      CDATA #REQUIRED
+  >
+  <!ELEMENT prod:item (prod:name)>
+  <!ATTLIST prod:item
+    id       CDATA #REQUIRED
+    quantity CDATA #REQUIRED
+    price    CDATA #REQUIRED
+  >
+  <!ELEMENT prod:name (#PCDATA)>
+]>
+<orders xmlns:order="http://company.com/order" xmlns:prod="http://company.com/product">
+  <order:order id="O001" customer="Nguyễn Văn A" date="2025-03-02">
+    <prod:item id="P001" quantity="2" price="500">
+      <prod:name>Điện thoại Samsung</prod:name>
+    </prod:item>
+    <prod:item id="P002" quantity="1" price="1000">
+      <prod:name>Laptop Dell</prod:name>
+    </prod:item>
+  </order:order>
+
+  <order:order id="O002" customer="Trần Thị B" date="2025-03-10">
+    <prod:item id="P003" quantity="3" price="20">
+      <prod:name>Tai nghe Bluetooth</prod:name>
+    </prod:item>
+    <prod:item id="P004" quantity="1" price="300">
+      <prod:name>Màn hình 27 inch</prod:name>
+    </prod:item>
+    <prod:item id="P005" quantity="5" price="15">
+      <prod:name>Chuột không dây</prod:name>
+    </prod:item>
+  </order:order>
+</orders>

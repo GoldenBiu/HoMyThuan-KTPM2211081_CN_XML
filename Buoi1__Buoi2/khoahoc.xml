@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE elearning [
+  <!ELEMENT elearning (course:course+)>
+  <!ATTLIST elearning
+    xmlns:course     CDATA #FIXED "http://example.com/course"
+    xmlns:instructor CDATA #FIXED "http://example.com/instructor"
+    xmlns:student    CDATA #FIXED "http://example.com/student"
+  >
+  <!ELEMENT course:course (course:title, instructor:instructor, course:students)>
+  <!ATTLIST course:course
+    id       CDATA #REQUIRED
+    category CDATA #REQUIRED
+  >
+  <!ELEMENT course:title (#PCDATA)>
+  <!ELEMENT instructor:instructor (instructor:name, instructor:email)>
+  <!ATTLIST instructor:instructor
+    id CDATA #REQUIRED
+  >
+  <!ELEMENT instructor:name (#PCDATA)>
+  <!ELEMENT instructor:email (#PCDATA)>
+  <!ELEMENT course:students (student:student+)>
+  <!ELEMENT student:student (student:name)>
+  <!ATTLIST student:student
+    id       CDATA #REQUIRED
+    progress CDATA #REQUIRED
+  >
+  <!ELEMENT student:name (#PCDATA)>
+]>
+<elearning
+  xmlns:course="http://example.com/course"
+  xmlns:instructor="http://example.com/instructor"
+  xmlns:student="http://example.com/student">
+
+  <course:course id="C001" category="Lập trình">
+    <course:title>Python cơ bản</course:title>
+    <instructor:instructor id="I001">
+      <instructor:name>Nguyễn Văn A</instructor:name>
+      <instructor:email>nguyenvana@example.com</instructor:email>
+    </instructor:instructor>
+    <course:students>
+      <student:student id="S001" progress="80">
+        <student:name>Trần Thị B</student:name>
+      </student:student>
+      <student:student id="S002" progress="50">
+        <student:name>Hoàng Minh C</student:name>
+      </student:student>
+    </course:students>
+  </course:course>
+
+  <course:course id="C002" category="Thiết kế">
+    <course:title>Thiết kế UI cơ bản</course:title>
+    <instructor:instructor id="I002">
+      <instructor:name>Phạm Gia D</instructor:name>
+      <instructor:email>phamgiad@example.com</instructor:email>
+    </instructor:instructor>
+    <course:students>
+      <student:student id="S003" progress="65">
+        <student:name>Ngô Thanh E</student:name>
+      </student:student>
+      <student:student id="S004" progress="92">
+        <student:name>Võ Nhật F</student:name>
+      </student:student>
+    </course:students>
+  </course:course>
+</elearning>

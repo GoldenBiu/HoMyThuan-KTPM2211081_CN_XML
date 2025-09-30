@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE orders SYSTEM "order.dtd">
+
+<orders>
+    <order id="O001">
+        <product id="P001">  
+            <name> Điện thoại samsung </name>
+            <quantity> 2 </quantity>
+        </product>
+        <product id="P002">  
+            <name> ASUS </name>
+            <quantity> 1 </quantity>
+        </product>
+    </order>
+
+    <order id="O002">
+        <product id="P003">
+            <name> Tai nghe </name>
+            <quantity> 3 </quantity>
+        </product>
+    </order>
+</orders>

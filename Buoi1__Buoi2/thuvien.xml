@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE classroom [
+  <!ELEMENT classroom (student+)>
+  <!ELEMENT student (name, id, subjects)>
+  <!ELEMENT name (#PCDATA)>
+  <!ELEMENT id (#PCDATA)>
+  <!ELEMENT subjects (subject+)>
+  <!ELEMENT subject (subject_name, score)>
+  <!ELEMENT subject_name (#PCDATA)>
+  <!ELEMENT score (#PCDATA)>
+]>
+<classroom>
+  <student>
+    <name>Nguyễn Văn D</name>
+    <id>SV001</id>
+    <subjects>
+      <subject>
+        <subject_name>Lập trình Web</subject_name>
+        <score>9.0</score>
+      </subject>
+      <subject>
+        <subject_name>Cấu trúc dữ liệu</subject_name>
+        <score>8.5</score>
+      </subject>
+    </subjects>
+  </student>
+
+  <student>
+    <name>Trần Thị E</name>
+    <id>SV002</id>
+    <subjects>
+      <subject>
+        <subject_name>Cơ sở dữ liệu</subject_name>
+        <score>8.0</score>
+      </subject>
+      <subject>
+        <subject_name>Mạng máy tính</subject_name>
+        <score>7.8</score>
+      </subject>
+    </subjects>
+  </student>
+
+  <student>
+    <name>Lê Hoàng F</name>
+    <id>SV003</id>
+    <subjects>
+      <subject>
+        <subject_name>Hệ điều hành</subject_name>
+        <score>8.2</score>
+      </subject>
+      <subject>
+        <subject_name>Trí tuệ nhân tạo</subject_name>
+        <score>9.2</score>
+      </subject>
+    </subjects>
+  </student>
+</classroom>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE company [
+  <!ELEMENT company (dep:department+)>
+  <!ATTLIST company
+    xmlns:hr  CDATA #FIXED "http://company.com/hr"
+    xmlns:dep CDATA #FIXED "http://company.com/department"
+  >
+  <!ELEMENT dep:department (hr:employee+)>
+  <!ATTLIST dep:department
+    name CDATA #REQUIRED
+  >
+  <!ELEMENT hr:employee (hr:name, hr:position)>
+  <!ATTLIST hr:employee
+    id CDATA #REQUIRED
+  >
+  <!ELEMENT hr:name (#PCDATA)>
+  <!ELEMENT hr:position (#PCDATA)>
+]>
+<company xmlns:hr="http://company.com/hr" xmlns:dep="http://company.com/department">
+  <dep:department name="Kế toán">
+    <hr:employee id="E001">
+      <hr:name>Nguyễn Văn A</hr:name>
+      <hr:position>Kế toán trưởng</hr:position>
+    </hr:employee>
+    <hr:employee id="E002">
+      <hr:name>Trần Thị B</hr:name>
+      <hr:position>Kế toán viên</hr:position>
+    </hr:employee>
+  </dep:department>
+
+  <dep:department name="Công nghệ thông tin">
+    <hr:employee id="E003">
+      <hr:name>Lê Minh C</hr:name>
+      <hr:position>Lập trình viên</hr:position>
+    </hr:employee>
+  </dep:department>
+</company>

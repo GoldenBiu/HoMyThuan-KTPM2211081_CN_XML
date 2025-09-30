@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hospital [
+  <!ELEMENT hospital (app:appointment+)>
+  <!ATTLIST hospital
+    xmlns     CDATA #FIXED "http://example.com/hospital"
+    xmlns:pat CDATA #FIXED "http://example.com/patient"
+    xmlns:doc CDATA #FIXED "http://example.com/doctor"
+    xmlns:app CDATA #FIXED "http://example.com/appointment"
+  >
+  <!ELEMENT app:appointment (pat:patient, doc:doctor)>
+  <!ATTLIST app:appointment
+    id     CDATA #REQUIRED
+    date   CDATA #REQUIRED
+    status CDATA #REQUIRED
+  >
+  <!ELEMENT pat:patient (pat:name, pat:dob)>
+  <!ATTLIST pat:patient
+    id CDATA #REQUIRED
+  >
+  <!ELEMENT pat:name (#PCDATA)>
+  <!ELEMENT pat:dob (#PCDATA)>
+  <!ELEMENT doc:doctor (doc:name, doc:specialty)>
+  <!ATTLIST doc:doctor
+    id CDATA #REQUIRED
+  >
+  <!ELEMENT doc:name (#PCDATA)>
+  <!ELEMENT doc:specialty (#PCDATA)>
+]>
+<hospital
+  xmlns="http://example.com/hospital"
+  xmlns:pat="http://example.com/patient"
+  xmlns:doc="http://example.com/doctor"
+  xmlns:app="http://example.com/appointment">
+
+  <app:appointment id="A001" date="2025-03-05" status="Đã khám">
+    <pat:patient id="P001">
+      <pat:name>Nguyễn Văn A</pat:name>
+      <pat:dob>1990-07-15</pat:dob>
+    </pat:patient>
+    <doc:doctor id="D001">
+      <doc:name>Trần Thị B</doc:name>
+      <doc:specialty>Nội khoa</doc:specialty>
+    </doc:doctor>
+  </app:appointment>
+
+  <app:appointment id="A002" date="2025-03-12" status="Chưa khám">
+    <pat:patient id="P002">
+      <pat:name>Lê Minh C</pat:name>
+      <pat:dob>1988-11-02</pat:dob>
+    </pat:patient>
+    <doc:doctor id="D002">
+      <doc:name>Phạm Gia D</doc:name>
+      <doc:specialty>Ngoại tổng quát</doc:specialty>
+    </doc:doctor>
+  </app:appointment>
+</hospital>
