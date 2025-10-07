@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<DSSV xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+      xsi:noNamespaceSchemaLocation='dssv.xsd'>
+
+  <!-- ===== Danh sách KHOA ===== -->
+  <KHOA>
+    <MA>KHOA000001</MA>
+    <TEN>congnghe</TEN>
+  </KHOA>
+  <KHOA>
+    <MA>KHOA000002</MA>
+    <TEN>kinhte</TEN>
+  </KHOA>
+
+  <!-- ===== Danh sách LOP ===== -->
+  <LOP>
+    <MA>LP00000001</MA>
+    <TEN>KTPM1</TEN>
+    <MaKhoa>KHOA000001</MaKhoa>
+  </LOP>
+  <LOP>
+    <MA>LP00000002</MA>
+    <TEN>QTKD1</TEN>
+    <MaKhoa>KHOA000002</MaKhoa>
+  </LOP>
+
+  <!-- ===== Danh sách SINHVIEN ===== -->
+  <SINHVIEN>
+    <MSSV>SV00000001</MSSV>
+    <HOTEN>Nguyen Van A</HOTEN>
+    <EMAIL>a.nguyen@example.com</EMAIL>
+    <DIACHI>123 Duong 1, Quan 1, TP.HCM</DIACHI>
+    <SDT>0912345678</SDT>
+    <MaLop>LP00000001</MaLop>
+  </SINHVIEN>
+
+  <SINHVIEN>
+    <MSSV>SV00000002</MSSV>
+    <HOTEN>Tran Thi B</HOTEN>
+    <EMAIL>b.tran@example.com</EMAIL>
+    <DIACHI>456 Duong 2, Quan 3, TP.HCM</DIACHI>
+    <SDT>0987654321</SDT>
+    <MaLop>LP00000002</MaLop>
+  </SINHVIEN>
+
+  <SINHVIEN>
+    <MSSV>SV00000003</MSSV>
+    <HOTEN>Le Minh C</HOTEN>
+    <EMAIL>c.le@example.com</EMAIL>
+    <DIACHI>789 Duong 3, Nha Be, TP.HCM</DIACHI>
+    <SDT>0901112233</SDT>
+    <MaLop>LP00000001</MaLop>
+  </SINHVIEN>
+
+</DSSV>

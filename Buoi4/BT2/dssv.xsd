@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' elementFormDefault='qualified'>
+
+  <!-- ===== Kiểu dùng chung ===== -->
+  <!-- Mã có đúng 10 ký tự (tương ứng CHAR(10)) -->
+  <xs:simpleType name='MaType10'>
+    <xs:restriction base='xs:string'>
+      <xs:length value='10'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Tên tối đa 50 ký tự (tương ứng VARCHAR(50)) -->
+  <xs:simpleType name='TenType50'>
+    <xs:restriction base='xs:string'>
+      <xs:maxLength value='50'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Tên KHOA: chỉ a-z (yêu cầu đề), tối đa 50 -->
+  <xs:simpleType name='TenKhoaType'>
+    <xs:restriction base='xs:string'>
+      <xs:pattern value='[a-z]+'/>
+      <xs:maxLength value='50'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Email tối đa 50 ký tự (đề không yêu cầu regex phức tạp) -->
+  <xs:simpleType name='Email50'>
+    <xs:restriction base='xs:string'>
+      <xs:maxLength value='50'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Họ tên tối đa 150 (VARCHAR(150)) -->
+  <xs:simpleType name='Ten150'>
+    <xs:restriction base='xs:string'>
+      <xs:maxLength value='150'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- SĐT: bắt đầu bằng 0, theo sau 9 số => tổng 10 số -->
+  <xs:simpleType name='SoDienThoaiVN'>
+    <xs:restriction base='xs:string'>
+      <xs:pattern value='0\d{9}'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ===== Cấu trúc gốc DSSV ===== -->
+  <xs:element name='DSSV'>
+    <xs:complexType>
+      <xs:sequence>
+        <!-- KHOA*, LOP*, SINHVIEN* (không ràng buộc thứ tự xuất hiện trong yêu cầu, để tuần tự cho dễ đọc) -->
+        <xs:element name='KHOA' maxOccurs='unbounded' minOccurs='0'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='MA'  type='MaType10'/>
+              <xs:element name='TEN' type='TenKhoaType'/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name='LOP' maxOccurs='unbounded' minOccurs='0'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='MA'      type='MaType10'/>
+              <xs:element name='TEN'     type='TenType50'/>
+              <xs:element name='MaKhoa'  type='MaType10'/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name='SINHVIEN' maxOccurs='unbounded' minOccurs='0'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='MSSV'   type='MaType10'/>
+              <xs:element name='HOTEN'  type='Ten150'/>
+              <xs:element name='EMAIL'  type='Email50'/>
+              <!-- DIACHI: đề gốc là TEXT, cho phép chuỗi dài -->
+              <xs:element name='DIACHI' type='xs:string'/>
+              <xs:element name='SDT'    type='SoDienThoaiVN'/>
+              <xs:element name='MaLop'  type='MaType10'/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+
+    <!-- ===== PRIMARY KEYS ===== -->
+    <!-- KhoaKey: MA của mỗi KHOA là duy nhất -->
+    <xs:key name='KhoaKey'>
+      <xs:selector xpath='KHOA'/>
+      <xs:field xpath='MA'/>
+    </xs:key>
+
+    <!-- LopKey: MA của mỗi LOP là duy nhất -->
+    <xs:key name='LopKey'>
+      <xs:selector xpath='LOP'/>
+      <xs:field xpath='MA'/>
+    </xs:key>
+
+    <!-- SVKey: MSSV của mỗi SINHVIEN là duy nhất -->
+    <xs:key name='SVKey'>
+      <xs:selector xpath='SINHVIEN'/>
+      <xs:field xpath='MSSV'/>
+    </xs:key>
+
+    <!-- ===== FOREIGN KEYS ===== -->
+    <!-- LOP.MaKhoa phải tồn tại trong KHOA.MA -->
+    <xs:keyref name='LopKhoaRef' refer='KhoaKey'>
+      <xs:selector xpath='LOP'/>
+      <xs:field xpath='MaKhoa'/>
+    </xs:keyref>
+
+    <!-- SINHVIEN.MaLop phải tồn tại trong LOP.MA -->
+    <xs:keyref name='SVLopRef' refer='LopKey'>
+      <xs:selector xpath='SINHVIEN'/>
+      <xs:field xpath='MaLop'/>
+    </xs:keyref>
+
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema
+  xmlns:xs='http://www.w3.org/2001/XMLSchema'
+  targetNamespace='http://example.com/quanan'
+  xmlns='http://example.com/quanan'
+  elementFormDefault='qualified'>
+
+  <!-- ===== Kiểu dùng chung theo ERD ===== -->
+  <xs:simpleType name='Char10'>
+    <xs:restriction base='xs:string'><xs:length value='10'/></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name='Varchar50'>
+    <xs:restriction base='xs:string'><xs:maxLength value='50'/></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name='Varchar150'>
+    <xs:restriction base='xs:string'><xs:maxLength value='150'/></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name='Phone10'>
+    <xs:restriction base='xs:string'>
+      <xs:pattern value='\d{10}'/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Username: 6..50 -->
+  <xs:simpleType name='UsernameType'>
+    <xs:restriction base='xs:string'>
+      <xs:minLength value='6'/><xs:maxLength value='50'/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Password: 10..50 -->
+  <xs:simpleType name='PasswordType'>
+    <xs:restriction base='xs:string'>
+      <xs:minLength value='10'/><xs:maxLength value='50'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ===== Phần tử gốc ===== -->
+  <xs:element name='QUANAN'>
+    <xs:complexType>
+      <xs:sequence>
+        <!-- BAN -->
+        <xs:element name='BAN' maxOccurs='unbounded' minOccurs='0'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='TENBAN' type='Char10'/>
+              <xs:element name='SOBAN'  type='xs:integer'/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- MON -->
+        <xs:element name='MON' maxOccurs='unbounded' minOccurs='0'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='MAMON'   type='Char10'/>
+              <xs:element name='TENMON'  type='Varchar50'/>
+              <xs:element name='GIA'     type='xs:float'/>
+              <xs:element name='HINHANH' type='xs:string'/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- NHANVIEN -->
+        <xs:element name='NHANVIEN' maxOccurs='unbounded' minOccurs='0'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='MANV'     type='Char10'/>
+              <xs:element name='TENNV'    type='Varchar150'/>
+              <xs:element name='SDT'      type='Phone10'/>
+              <xs:element name='DIACHI'   type='xs:string'/>
+              <xs:element name='GIOITINH' type='Char5' minOccurs='0'/>
+              <xs:element name='USERNAME' type='UsernameType'/>
+              <xs:element name='PASSWORD' type='PasswordType'/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- HOADON -->
+        <xs:element name='HOADON' maxOccurs='unbounded' minOccurs='0'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='SOHD'     type='xs:integer'/>
+              <xs:element name='NGAYLAP'  type='xs:date'/>
+              <xs:element name='TONGTIEN' type='xs:float'/>
+              <xs:element name='TENBAN'   type='Char10'/>   <!-- FK -> BAN.TENBAN -->
+              <xs:element name='MANV'     type='Char10'/>   <!-- FK -> NHANVIEN.MANV -->
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- CTHD -->
+        <xs:element name='CTHD' maxOccurs='unbounded' minOccurs='0'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='SOHD'   type='xs:integer'/>  <!-- FK -> HOADON.SOHD -->
+              <xs:element name='MAMON'  type='Char10'/>      <!-- FK -> MON.MAMON -->
+              <xs:element name='SOLUONG' type='xs:integer'/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+    </xs:complexType>
+
+    <!-- ===== PRIMARY KEYS ===== -->
+    <xs:key name='BanKey'>
+      <xs:selector xpath='BAN'/><xs:field xpath='TENBAN'/>
+    </xs:key>
+    <xs:key name='MonKey'>
+      <xs:selector xpath='MON'/><xs:field xpath='MAMON'/>
+    </xs:key>
+    <xs:key name='NvKey'>
+      <xs:selector xpath='NHANVIEN'/><xs:field xpath='MANV'/>
+    </xs:key>
+    <xs:key name='HdKey'>
+      <xs:selector xpath='HOADON'/><xs:field xpath='SOHD'/>
+    </xs:key>
+
+    <!-- ===== FOREIGN KEYS ===== -->
+    <!-- HOADON.TENBAN -> BAN.TENBAN -->
+    <xs:keyref name='HdBanRef' refer='BanKey'>
+      <xs:selector xpath='HOADON'/><xs:field xpath='TENBAN'/>
+    </xs:keyref>
+    <!-- HOADON.MANV -> NHANVIEN.MANV -->
+    <xs:keyref name='HdNvRef' refer='NvKey'>
+      <xs:selector xpath='HOADON'/><xs:field xpath='MANV'/>
+    </xs:keyref>
+    <!-- CTHD.SOHD -> HOADON.SOHD -->
+    <xs:keyref name='CtHdHdRef' refer='HdKey'>
+      <xs:selector xpath='CTHD'/><xs:field xpath='SOHD'/>
+    </xs:keyref>
+    <!-- CTHD.MAMON -> MON.MAMON -->
+    <xs:keyref name='CtHdMonRef' refer='MonKey'>
+      <xs:selector xpath='CTHD'/><xs:field xpath='MAMON'/>
+    </xs:keyref>
+  </xs:element>
+
+  <!-- Kiểu CHAR(5) cho GIOITINH (tùy chọn) -->
+  <xs:simpleType name='Char5'>
+    <xs:restriction base='xs:string'><xs:maxLength value='5'/></xs:restriction>
+  </xs:simpleType>
+</xs:schema>
