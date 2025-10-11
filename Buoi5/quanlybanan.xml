@@ -1,60 +1,128 @@
-<QUANAN>
+<?xml version='1.0' encoding='UTF-8'?>
+<QUANAN
+  xmlns='http://example.com/quanan'
+  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+  xsi:schemaLocation='http://example.com/quanan quanan.xsd'>
+
+  <!-- ===== BẢNG BAN ===== -->
   <BAN>
-    <TENBAN>BAN01</TENBAN>
+    <TENBAN>BAN0000001</TENBAN>
     <SOBAN>1</SOBAN>
   </BAN>
   <BAN>
-    <TENBAN>BAN02</TENBAN>
+    <TENBAN>BAN0000002</TENBAN>
     <SOBAN>2</SOBAN>
   </BAN>
+  <BAN>
+    <TENBAN>BAN0000003</TENBAN>
+    <SOBAN>3</SOBAN>
+  </BAN>
+  <BAN>
+    <TENBAN>BAN0000004</TENBAN>
+    <SOBAN>4</SOBAN>
+  </BAN>
+  <BAN>
+    <TENBAN>BAN0000005</TENBAN>
+    <SOBAN>5</SOBAN>
+  </BAN>
 
+  <!-- ===== BẢNG MÓN ===== -->
+  <MON>
+    <MAMON>MON0000001</MAMON>
+    <TENMON>Cơm gà</TENMON>
+    <GIA>45000</GIA>
+    <HINHANH>comga.jpg</HINHANH>
+  </MON>
+  <MON>
+    <MAMON>MON0000002</MAMON>
+    <TENMON>Bún bò</TENMON>
+    <GIA>50000</GIA>
+    <HINHANH>bunbo.jpg</HINHANH>
+  </MON>
+  <MON>
+    <MAMON>MON0000003</MAMON>
+    <TENMON>Mì xào</TENMON>
+    <GIA>42000</GIA>
+    <HINHANH>mixao.jpg</HINHANH>
+  </MON>
+  <MON>
+    <MAMON>MON0000004</MAMON>
+    <TENMON>Trà sữa</TENMON>
+    <GIA>30000</GIA>
+    <HINHANH>trasua.jpg</HINHANH>
+  </MON>
+  <MON>
+    <MAMON>MON0000005</MAMON>
+    <TENMON>Cà phê</TENMON>
+    <GIA>25000</GIA>
+    <HINHANH>caphe.jpg</HINHANH>
+  </MON>
+
+  <!-- ===== BẢNG NHÂN VIÊN ===== -->
   <NHANVIEN>
-    <MANV>NV01</MANV>
-    <TENVN>Nguyen Van A</TENVN>
+    <MANV>NV00000001</MANV>
+    <TENNV>Nguyễn Văn A</TENNV>
     <SDT>0912345678</SDT>
-    <DIACHI>Can Tho</DIACHI>
+    <DIACHI>1 Nguyễn Trãi, Q1</DIACHI>
     <GIOITINH>Nam</GIOITINH>
   </NHANVIEN>
   <NHANVIEN>
-    <MANV>NV02</MANV>
-    <TENVN>Le Thi B</TENVN>
+    <MANV>NV00000002</MANV>
+    <TENNV>Trần Thị B</TENNV>
     <SDT>0987654321</SDT>
-    <DIACHI>Can Tho</DIACHI>
-    <GIOITINH>Nu</GIOITINH>
+    <DIACHI>2 Lê Lợi, Q1</DIACHI>
+    <GIOITINH>Nữ</GIOITINH>
+  </NHANVIEN>
+  <NHANVIEN>
+    <MANV>NV00000003</MANV>
+    <TENNV>Lê Minh C</TENNV>
+    <SDT>0901112233</SDT>
+    <DIACHI>3 Cách Mạng, Q3</DIACHI>
+    <GIOITINH>Nam</GIOITINH>
   </NHANVIEN>
 
-  <MON>
-    <MAMON>M01</MAMON>
-    <TENMON>Ca kho</TENMON>
-    <GIA>60000</GIA>
-  </MON>
-  <MON>
-    <MAMON>M02</MAMON>
-    <TENMON>Canh chua</TENMON>
-    <GIA>45000</GIA>
-  </MON>
-
+  <!-- ===== BẢNG HÓA ĐƠN ===== -->
   <HOADON>
-    <SOHD>HD01</SOHD>
-    <NGAYLAP>2024-05-10</NGAYLAP>
-    <TONGTIEN>120000</TONGTIEN>
-    <BAN_REF>BAN01</BAN_REF>
-    <NV_REF>NV01</NV_REF>
-    <CTHD>
-      <MAMON_REF>M01</MAMON_REF>
-      <SOLUONG>2</SOLUONG>
-    </CTHD>
+    <SOHD>1001</SOHD>
+    <NGAYLAP>2025-10-01</NGAYLAP>
+    <TONGTIEN>122000</TONGTIEN>
+    <TENBAN>BAN0000001</TENBAN>
+    <MANV>NV00000001</MANV>
+  </HOADON>
+  <HOADON>
+    <SOHD>1002</SOHD>
+    <NGAYLAP>2025-10-01</NGAYLAP>
+    <TONGTIEN>75000</TONGTIEN>
+    <TENBAN>BAN0000002</TENBAN>
+    <MANV>NV00000002</MANV>
+  </HOADON>
+  <HOADON>
+    <SOHD>1003</SOHD>
+    <NGAYLAP>2025-10-02</NGAYLAP>
+    <TONGTIEN>97000</TONGTIEN>
+    <TENBAN>BAN0000003</TENBAN>
+    <MANV>NV00000003</MANV>
   </HOADON>
 
-  <HOADON>
-    <SOHD>HD02</SOHD>
-    <NGAYLAP>2024-06-01</NGAYLAP>
-    <TONGTIEN>90000</TONGTIEN>
-    <BAN_REF>BAN02</BAN_REF>
-    <NV_REF>NV02</NV_REF>
-    <CTHD>
-      <MAMON_REF>M02</MAMON_REF>
-      <SOLUONG>1</SOLUONG>
-    </CTHD>
-  </HOADON>
+  <!-- ===== BẢNG CHI TIẾT HÓA ĐƠN ===== -->
+  <CTHD>
+    <SOHD>1001</SOHD>
+    <MAMON>MON0000001</MAMON>
+    <SOLUONG>2</SOLUONG>
+  </CTHD>
+  <CTHD>
+    <SOHD>1001</SOHD>
+    <MAMON>MON0000004</MAMON>
+    <SOLUONG>1</SOLUONG>
+  </CTHD>
+  <CTHD>
+    <SOHD>1002</SOHD>
+    <MAMON>MON0000002</MAMON>
+    <SOLUONG>1</SOLUONG>
+  </CTHD>
+  <CTHD>
+    <SOHD>1003</SOHD>
+    <MAMON>MON0000003</MAMON>
+    <SOLUONG>2</SOLUONG>
+  </CTHD>
 </QUANAN>
